@@ -67,7 +67,7 @@ function inning(){
 
 }
 
-console.log(inning());
+// console.log(inning());
 
 /* Task 3: finalScore()
 
@@ -94,14 +94,14 @@ function finalScore(numInnings, callback){
     away += callback();
     console.log(`away score in inning ${i} was ${away}`);
   }
-  return {
+  return score = {
     "Home": home,
     "Away": away,
   }
 
 }
 
-console.log( finalScore( 9, inning ) );
+// console.log( finalScore( 9, inning ) );
 
 // function finalScore(numInnings, maxPoints, callback){
 //   let home = 0
@@ -163,14 +163,50 @@ and returns the score at each point in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
-// function getInningScore(inning) {
+function getInningScore(callback) {
+  let home = callback();
+  let away = callback();
+  return score = {
+    "Home": home,
+    "Away": away,
+  }
+}
 
-// }
-
-// function scoreboard(getScore, getInning, numInnings) {
-//   for 
-  
-//   return `1st inning: ${away} - ${home}`;
-// }
+function scoreboard(getScore, getInning, numInnings) {
+  let inningScore;
+  let gameScore = {
+    "Home": 0,
+    "Away": 0,
+  }
+  let numAdjective;
+  for ( let i = 0; i < numInnings; i++ ) {
+    inningScore = getScore(getInning)
+    gameScore.Home += inningScore.Home;
+    gameScore.Away += inningScore.Away;
+    
+    if ( i === 0 ) {
+      numAdjective = '1st';
+    } else if ( i === 1 ) {
+      numAdjective = '2nd';
+    } else if ( i === 2 ) {
+      numAdjective = '3rd';
+    } else if ( i === 3 ) {
+      numAdjective = '4th';
+    } else if ( i === 4 ) {
+      numAdjective = '5th';
+    } else if ( i === 5 ) {
+      numAdjective = '6th';
+    } else if ( i === 6 ) {
+      numAdjective = '7th';
+    } else if ( i === 7 ) {
+      numAdjective = '8th';
+    } else {
+      numAdjective = '9th';
+    }
+    console.log(`${numAdjective} inning: ${gameScore.Away} - ${gameScore.Home}`);
+  }
+  return `Final Score: ${gameScore.Away} - ${gameScore.Home}`;
+}
+console.log(scoreboard(getInningScore, inning, 9));
 
 
