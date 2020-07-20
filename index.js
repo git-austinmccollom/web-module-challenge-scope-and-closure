@@ -86,12 +86,13 @@ finalScore(inning, 9) might return:
 function finalScore(numInnings, callback){
   let home = 0
   for ( let i = 0; i < numInnings; i++ ) {
-    home += callback;
-    console.log(home);
+    home += callback();
+    console.log(`home score in inning ${i} was ${home}`);
   }
   let away = 0
   for ( let i = 0; i < numInnings; i++ ) {
-    away += callback;
+    away += callback();
+    console.log(`away score in inning ${i} was ${away}`);
   }
   return {
     "Home": home,
@@ -100,18 +101,38 @@ function finalScore(numInnings, callback){
 
 }
 
-console.log( finalScore( 9, inning() ) );
+console.log( finalScore( 9, inning ) );
+
+// function finalScore(numInnings, maxPoints, callback){
+//   let home = 0
+//   for ( let i = 0; i < numInnings; i++ ) {
+//     home += callback(maxPoints);
+//     console.log(`home score in inning ${i} was ${home}`);
+//   }
+//   let away = 0
+//   for ( let i = 0; i < numInnings; i++ ) {
+//     away += callback(maxPoints);
+//     console.log(`away score in inning ${i} was ${away}`);
+//   }
+//   return {
+//     "Home": home,
+//     "Away": away,
+//   }
+
+// }
+
+// console.log( finalScore( 9, 3, inning ) );
 
 // function finalScore(numInnings, callback){
 //   let home = 0
 //   for ( let i = 0; i < numInnings; i++ ) {
-//     let points = Math.floor(Math.random() * 3);
-//     console.log(points);
-//     home += points;
+//     home += Math.floor(Math.random() * 3);
+//     console.log(`home score in inning ${i} was ${home}`);
 //   }
 //   let away = 0
 //   for ( let i = 0; i < numInnings; i++ ) {
 //     away += Math.floor(Math.random() * 3);
+//     console.log(`away score in inning ${i} was ${away}`);
 //   }
 //   return {
 //     "Home": home,
@@ -130,7 +151,7 @@ Create a function called `scoreboard` that accepts the following parameters:
 (2) Callback function `inning`
 (3) A number of innings
 
-and returns the score at each pont in the game, like so:
+and returns the score at each point in the game, like so:
 1st inning: awayTeam - homeTeam
 2nd inning: awayTeam - homeTeam
 3rd inning: awayTeam - homeTeam
@@ -142,9 +163,14 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
+// function getInningScore(inning) {
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
-}
+// }
+
+// function scoreboard(getScore, getInning, numInnings) {
+//   for 
+  
+//   return `1st inning: ${away} - ${home}`;
+// }
 
 
