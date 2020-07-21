@@ -27,11 +27,15 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ *    counter1 returns/creates a new counter function
  * 
  * 2. Which of the two uses a closure? How can you tell?
+ *    counter2 uses a closure because it references count, which was declared globally outside of the function
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ *    The scenario in which counter1 code would be preferable is when you need to create multiple counters 
+ *    to count different things. counter2 would be preferable if your program is only counting one thing.
+ * 
 */
 
 // counter1 code
@@ -56,11 +60,14 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+function inning(){
 
-    /*Code Here*/
+    let points = Math.floor(Math.random() * 3);
+    return points;
 
 }
+
+// console.log(inning());
 
 /* Task 3: finalScore()
 
@@ -76,11 +83,65 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
+function finalScore(numInnings, callback){
+  let home = 0
+  for ( let i = 0; i < numInnings; i++ ) {
+    home += callback();
+    console.log(`home score in inning ${i} was ${home}`);
+  }
+  let away = 0
+  for ( let i = 0; i < numInnings; i++ ) {
+    away += callback();
+    console.log(`away score in inning ${i} was ${away}`);
+  }
+  return score = {
+    "Home": home,
+    "Away": away,
+  }
 
 }
+
+// console.log( finalScore( 9, inning ) );
+
+// function finalScore(numInnings, maxPoints, callback){
+//   let home = 0
+//   for ( let i = 0; i < numInnings; i++ ) {
+//     home += callback(maxPoints);
+//     console.log(`home score in inning ${i} was ${home}`);
+//   }
+//   let away = 0
+//   for ( let i = 0; i < numInnings; i++ ) {
+//     away += callback(maxPoints);
+//     console.log(`away score in inning ${i} was ${away}`);
+//   }
+//   return {
+//     "Home": home,
+//     "Away": away,
+//   }
+
+// }
+
+// console.log( finalScore( 9, 3, inning ) );
+
+// function finalScore(numInnings, callback){
+//   let home = 0
+//   for ( let i = 0; i < numInnings; i++ ) {
+//     home += Math.floor(Math.random() * 3);
+//     console.log(`home score in inning ${i} was ${home}`);
+//   }
+//   let away = 0
+//   for ( let i = 0; i < numInnings; i++ ) {
+//     away += Math.floor(Math.random() * 3);
+//     console.log(`away score in inning ${i} was ${away}`);
+//   }
+//   return {
+//     "Home": home,
+//     "Away": away,
+//   }
+
+// }
+
+// console.log( finalScore( 9, inning() ) );
 
 /* Task 4: 
 
@@ -90,7 +151,7 @@ Create a function called `scoreboard` that accepts the following parameters:
 (2) Callback function `inning`
 (3) A number of innings
 
-and returns the score at each pont in the game, like so:
+and returns the score at each point in the game, like so:
 1st inning: awayTeam - homeTeam
 2nd inning: awayTeam - homeTeam
 3rd inning: awayTeam - homeTeam
@@ -102,9 +163,48 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
-
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function getInningScore(callback) {
+  let home = callback();
+  let away = callback();
+  return score = {
+    "Home": home,
+    "Away": away,
+  }
 }
 
-
+function scoreboard(getScore, getInning, numInnings) {
+  let inningScore;
+  let gameScore = {
+    "Home": 0,
+    "Away": 0,
+  }
+  let numAdjective;
+  for ( let i = 0; i < numInnings; i++ ) {
+    inningScore = getScore(getInning)
+    gameScore.Home += inningScore.Home;
+    gameScore.Away += inningScore.Away;
+    
+    if ( i === 0 ) {
+      numAdjective = '1st';
+    } else if ( i === 1 ) {
+      numAdjective = '2nd';
+    } else if ( i === 2 ) {
+      numAdjective = '3rd';
+    } else if ( i === 3 ) {
+      numAdjective = '4th';
+    } else if ( i === 4 ) {
+      numAdjective = '5th';
+    } else if ( i === 5 ) {
+      numAdjective = '6th';
+    } else if ( i === 6 ) {
+      numAdjective = '7th';
+    } else if ( i === 7 ) {
+      numAdjective = '8th';
+    } else {
+      numAdjective = '9th';
+    }
+    console.log(`${numAdjective} inning: ${gameScore.Away} - ${gameScore.Home}`);
+  }
+  return `Final Score: ${gameScore.Away} - ${gameScore.Home}`;
+}
+console.log(scoreboard(getInningScore, inning, 9));
