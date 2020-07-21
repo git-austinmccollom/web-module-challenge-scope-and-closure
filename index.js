@@ -208,5 +208,3 @@ function scoreboard(getScore, getInning, numInnings) {
   return `Final Score: ${gameScore.Away} - ${gameScore.Home}`;
 }
 console.log(scoreboard(getInningScore, inning, 9));
-
-
